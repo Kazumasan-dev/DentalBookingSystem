@@ -62,6 +62,6 @@ public class Appointment {
     public String toString() {
         return "Appointment ID: " + appointmentid + "\nName: " + name + ", ID: " + ic + "\nService: " + service +
                "\nDate: " + date + "\nTime: " + time +
-               (payment == null ? "\nPayment: Not paid" : "\n" + payment.toString()) + "\n";
+               (payment == null ? "\nPayment: Not paid" : "\n" + payment.toString()) + "\n"+"upadated here";
     }
 }
