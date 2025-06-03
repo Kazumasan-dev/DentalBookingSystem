@@ -5,8 +5,8 @@
 package dentalbookingsystem;
 
 /**
- *
- **AUTHOR : MUHAMMAD AIMAN,SITI NUR AZRINA ASYRAF,NABIL
+
+ *AUTHOR : MUHAMMAD AIMAN,SITI NUR AZRINA ,ASYRAF NABIL
  * MATRIC NO:S74699,S74720,S74594
  *CLASS :Dentalbookinsystem.java
  *DESC : main class to implement all class
@@ -42,7 +42,7 @@ public class DentalBookingSystem {
                 }
             } else {
                 
-                
+                //display menu
                 System.out.println("\n1. Make Appointment");
                 System.out.println("2. View Appointments");
                 System.out.println("3. Edit Appointment");
@@ -52,94 +52,89 @@ public class DentalBookingSystem {
                 System.out.print("Choose option: ");
                 String choice = scanner.nextLine();
                 System.out.println("");
+                
+                
                  //switch case to determine action for user selection
                 switch (choice) {
+                    
                     //case 1: accept data from user to make new appointment
                     case "1":
-                        //prompt and accept name from user
+                         
                         System.out.print("Enter Name: ");
                         String name = scanner.nextLine();
-                        //prompt and accept Ic number
                         System.out.print("Enter IC Number: ");
                         String ic = scanner.nextLine();
-                        //prompt and accept service type from user
                         System.out.print("Service Type: ");
                         String service = scanner.nextLine();
-                        //prompt and accept date from user
                         System.out.print("Date (dd-mm-yyyy): ");
                         String date = scanner.nextLine();
-                        //prompt and accept time from user
                         System.out.print("Time (e.g., 10:00 AM): ");
                         String time = scanner.nextLine();
                         //create object for appointment class
-                        Appointment appt = new Appointment(appointmentCounter++, name, ic, service, date, time);
-                        //add new appointment to array list invoking addappoinment method from user class
-                        currentUser.addAppointment(appt);
-                        //display to tell user appointment successfulyy created
-                        System.out.println("Appointment created.\n");
-                        System.out.println("============================================");
+                         Appointment appt = new Appointment(appointmentCounter++, name, ic, service, date, time);
+                        if (currentUser  instanceof Patient) {
+                            ((Patient) currentUser ).bookAppointment(appt);
+                        } else if (currentUser  instanceof Staff) {
+                            ((Staff) currentUser ).bookAppointment(appt);
+                        }
                         break;
+                        
                     //case 2: view booked appointment
                     case "2":
                         //invoke method to view appoint from user class
                         currentUser.viewAppointments();
                         break;
+                        
                     //case3: to edit appointment
                     case "3":
-                        currentUser.viewAppointments();
-                        //prompt and accept appoinment id from user
                         System.out.print("Enter Appointment ID to edit: ");
                         int editId = Integer.parseInt(scanner.nextLine());
-                        //prompt and accept new service from user
                         System.out.print("New Service: ");
                         String newService = scanner.nextLine();
-                        //prompt and accept new date from user
                         System.out.print("New Date: ");
                         String newDate = scanner.nextLine();
-                        //prompt and accept new time from user
                         System.out.print("New Time: ");
                         String newTime = scanner.nextLine();
-                        //invoke editappointment method from user class
-                        currentUser.editAppointment(editId, newService, newDate, newTime);
-                        //display to tell user appointment successfulyy edited
-                        System.out.println("Appointment updated.\n");
+                        if (currentUser  instanceof Patient) {
+                            ((Patient) currentUser ).editAppointment(editId, newService, newDate, newTime);
+                        } else if (currentUser  instanceof Staff) {
+                            ((Staff) currentUser ).editAppointment(editId, newService, newDate, newTime);
+                        }
                         break;
-                    //case:4 to view appointment
+                        
+                    //case:4 to cancel an appointment
                     case "4":
-                        //invoke method to display appointment
-                        currentUser.viewAppointments();
-                        //prompt and accept appointmentid from user
-                        System.out.print("Enter Appointment ID to cancel: ");
+                       System.out.print("Enter Appointment ID to cancel: ");
                         int cancelId = Integer.parseInt(scanner.nextLine());
-                        //invoke method to cancel appointment from user class
-                        currentUser.cancelAppointment(cancelId);
-                        //display to tell user appointment successfulyy cancelled
-                        System.out.println("Appointment cancelled.\n");
+                        if (currentUser  instanceof Patient) {
+                            ((Patient) currentUser ).cancelAppointment(cancelId);
+                        } else if (currentUser  instanceof Staff) {
+                            ((Staff) currentUser ).cancelAppointment(cancelId);
+                        }
                         break;
+                        
                     //case 5: to make payment or appointment
                     case "5":
-                        //display all appointment by invoking method view appointment
-                        currentUser.viewAppointments();
-                        //prompt and accept appointmentid from user
                         System.out.print("Enter Appointment ID to make payment: ");
                         int payId = Integer.parseInt(scanner.nextLine());
-                        //prompt and accept payment amount from user
                         System.out.print("Enter payment amount: ");
                         double amount = Double.parseDouble(scanner.nextLine());
-                        //prompt and accept payment method from user
                         System.out.print("Enter payment method (Cash/Card): ");
                         String method = scanner.nextLine();
-                        //invoke makepayment method from user class
-                        currentUser.makePayment(payId, amount, method);
-                        System.out.println("Payment successfull.\n");
+                        
+                        if (currentUser  instanceof Patient) {
+                            ((Patient) currentUser ).makePayment(payId, amount, method);
+                        } else if (currentUser  instanceof Staff) {
+                            ((Staff) currentUser ).makePayment(payId, amount, method);
+                        }
                         break;
-                    //Case 6: log out from syste,
+                        
+                    //Case 6: log out from system
                     case "6":
-                        //set object to null
-                        currentUser = null;
-                        //display to indicate user succesfully logout
+                        currentUser  = null;
                         System.out.println("Logged out.");
                         break;
+                        
                     // user enter invalid option
                     default:
                         System.out.println("Invalid option.");

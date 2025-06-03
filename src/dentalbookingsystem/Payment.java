@@ -5,9 +5,10 @@
 package dentalbookingsystem;
 
 /**
- **AUTHOR : ASYRAFF NABIL
- *CLASS :PAYMENT.JAVA
- *DESC : CLASS THAT HAS METHOD AND DATA FIELD FOR PAYMENT
+ *AUTHOR:MUHAMMAD AIMAN,SITI NUR AZRINA ,ASYRAF NABIL
+ *MATRIC NO:S74699,S74720,S74594
+ *CLASS :Payment.java
+ *DESC : Class that contain method and data field for payment
  */
 public class Payment {
     //declare instance variable for payment class

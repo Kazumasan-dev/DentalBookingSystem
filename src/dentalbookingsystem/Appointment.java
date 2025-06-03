@@ -5,9 +5,10 @@
 package dentalbookingsystem;
 
 /**
- *AUTHOR : MUHAMMAD AIMAN
- *CLASS :APPOINTMENT.JAVA
- *DESC : CLASS THAT HAS METHOD AND DATA FIELD FOR USER
+ *AUTHOR:MUHAMMAD AIMAN,SITI NUR AZRINA ,ASYRAF NABIL
+ *MATRIC NO:S74699,S74720,S74594
+ *CLASS :Appointment.JAVA
+ *DESC :class that contain data field and method for Appointment class
  */
 public class Appointment {
     //declare instance variable
@@ -22,12 +23,18 @@ public class Appointment {
     public Appointment(int appointmentid, String name, String ic, String service, String date, String time) {
         //assign parameter to instance variable
         this.appointmentid = appointmentid;
-        this.name = name;
+        setName(name);
         this.ic = ic;
         this.service = service;
         this.date = date;
         this.time = time;
         this.payment = null;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+    public String getName(){
+        return name;
     }
     // method get id to return appointment id
     public int getId() {
